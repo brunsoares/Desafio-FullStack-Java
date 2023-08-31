@@ -31,7 +31,7 @@ export class CadastroPaisesComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.idPais = this.route.snapshot.paramMap.get('idPais');
-		if (this.idPais !== null){
+		if (this.idPais !== null && this.idPais !== ""){
 			this.buscaDadosPais()
 			this.title = "Alteração do País"
 		}
@@ -39,7 +39,7 @@ export class CadastroPaisesComponent implements OnInit {
 
 	salvar(){
 		if (this.validarRegistro()){
-			if (this.idPais === null){
+			if (this.idPais === null || this.idPais === ""){
 				this.enviarPost()
 			} else {
 				this.enviarPut()
@@ -68,7 +68,7 @@ export class CadastroPaisesComponent implements OnInit {
 			},
 		})
 	}
-
+	
 	enviarPut(){
 		this.http.put('pais/' + this.idPais,this.formPais.value).subscribe({
 			next:(resposta) => {
