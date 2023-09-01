@@ -1,4 +1,4 @@
-package br.com.juridico.totvs.fullstack.Backend.service.dto;
+package br.com.juridico.totvs.fullstack.Backend.service.dto.pais;
 
 public class PaisCreateUpdateDTO {
     private String nome;
