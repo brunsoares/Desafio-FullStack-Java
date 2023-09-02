@@ -9,41 +9,51 @@ import { HttpService } from '../service/http-service.service';
   styleUrls: ['./pontos-turisticos.component.css']
 })
 export class PontosTuristicosComponent implements OnInit {
-  lsActions: Array<PoTableAction> = this.carregarActions();
+  	lsActions: Array<PoTableAction> = this.carregarActions();
 	lsColumns: Array<PoTableColumn> = this.carregarColunas();
+	lsPontoTuristico: Array<PontoTuristicoLista> = [];
 
   constructor(
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-    private httpService: HttpService,
+    	private httpService: HttpService,
 		private poNotification: PoNotificationService
   ) { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		this.carregarPontoTuristico();
+	}
 
-  navegarParaCadastro(codigoPontoTuristico: string = ""){
+  	navegarParaCadastro(codigoPontoTuristico: string = ""){
+	  this.router.navigate(['cadastro', codigoPontoTuristico], { relativeTo: this.activatedRoute })
+	}
+	
+	// TODO: colocar tela de detalhes
+	navegarParaDetalhes(codigoPontoTuristico: string = ""){
 	  this.router.navigate(['cadastro', codigoPontoTuristico], { relativeTo: this.activatedRoute })
 	}
 
-  carregarActions(): Array<PoTableAction> {
+  	carregarActions(): Array<PoTableAction> {
 		return [
 			{
 				label: 'Editar',
-				icon: 'po-icon-edit'
+				icon: 'po-icon-edit',
+				action: (row: PontoTuristicoLista)=>{this.navegarParaCadastro(row.id)}
 			},
 			{
 				label: 'Excluir',
-				icon: 'po-icon-delete'
+				icon: 'po-icon-delete',
+				action: (row: PontoTuristicoLista)=>{this.deletarCadastro(row.id)}
 			},
-      {
-        label: 'Detalhes',
-        icon: 'po-icon-clipboard'
-      }
+			{
+				label: 'Detalhes',
+				icon: 'po-icon-clipboard',
+				action: (row: PontoTuristicoLista)=>{this.navegarParaDetalhes(row.id)}
+			}
 		]
 	}
 
-  carregarColunas(): Array<PoTableColumn>{
+  	carregarColunas(): Array<PoTableColumn>{
 		return [
 			{
 				property: 'nome',
@@ -64,12 +74,45 @@ export class PontosTuristicosComponent implements OnInit {
 		]
 	}
 
+	carregarPontoTuristico(){
+		return this.httpService.get('ponto-turistico').subscribe({
+			next: (resposta)=>{
+				let registros: Array<PontoTuristicoLista> = []
+				resposta.forEach(item => {
+					let novoPontoTuristico: PontoTuristicoLista = {
+						id: item.id,
+						pais: item.pais.nome,
+						cidade: item.cidade,
+						nome: item.nome,
+						melhorEstacao: item.melhorEstacao,
+					}
+					registros.push(novoPontoTuristico);
+				});
+				
+				this.lsPontoTuristico = [...registros]
+				console.log(this.lsPontoTuristico);
+			}
+		})
+	}
+
+	deletarCadastro(id: string): void {
+		this.httpService.delete('ponto-turistico/' + id).subscribe({
+			next: (response)=>{
+				this.poNotification.success('Registro excluido com sucesso!');
+				this.carregarPontoTuristico();
+			},
+			error: (error)=>{
+				this.poNotification.error(error);
+			}
+		})
+	}
+
 }
 
-interface PontoTuristico{
-	id: string,
-	nome: string,
-	pais: string,
-  cidade: string,
-	melhorEstacao: string,
+interface PontoTuristicoLista{
+	id: string;
+    pais: string;
+    cidade: string;
+    nome: string;
+    melhorEstacao: string;
 }
