@@ -16,6 +16,14 @@ public class PontoTuristicoCreateUpdateDTO {
 
     }
 
+    public PontoTuristicoCreateUpdateDTO(PontoTuristicoDTO pontoTuristicoDTO){
+        this.pais = pontoTuristicoDTO.getPais();
+        this.cidade = pontoTuristicoDTO.getCidade();
+        this.nome = pontoTuristicoDTO.getNome();
+        this.melhorEstacao = pontoTuristicoDTO.getMelhorEstacao();
+        this.comentarios = pontoTuristicoDTO.getComentarios();
+    }
+
     public Pais getPais() {
         return pais;
     }

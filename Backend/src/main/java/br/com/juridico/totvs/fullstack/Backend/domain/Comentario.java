@@ -1,16 +1,14 @@
 package br.com.juridico.totvs.fullstack.Backend.domain;
 
-import java.util.Date;
-
 public class Comentario {
 
     private Long id;
     private String nome;
     private String comentario;
-    private Date data;
+    private String data;
     private PontoTuristico pontoTuristico;
 
-    public Comentario(Long id, String nome, String comentario, Date data, PontoTuristico pontoTuristico) {
+    public Comentario(Long id, String nome, String comentario, String data, PontoTuristico pontoTuristico) {
         this.id = id;
         this.nome = nome;
         this.comentario = comentario;
@@ -42,11 +40,11 @@ public class Comentario {
         this.comentario = comentario;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

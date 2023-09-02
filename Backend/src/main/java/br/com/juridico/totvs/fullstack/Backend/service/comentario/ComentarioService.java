@@ -18,4 +18,5 @@ public interface ComentarioService {
     ComentarioDTO getComentarioById(Long id);
     List<ComentarioDTO> getComentarioByPontoTuristico(PontoTuristicoDTO pontoTuristico);
     List<ComentarioDTO> getAllComentarios();
+    Long getNewId();
 }

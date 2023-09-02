@@ -60,14 +60,14 @@ public class ComentarioServiceImpl implements ComentarioService {
     @Override
     public ComentarioDTO getComentarioById(Long id) {
         Comentario comentario = this.getComentarioComId(id);
-        if (comentario == null){ throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
+        if (comentario == null){ throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Comentário não cadastrado!"); }
         return new ComentarioDTO(comentario);
     }
 
     @Override
     public List<ComentarioDTO> getComentarioByPontoTuristico(PontoTuristicoDTO pontoTuristico) {
         return this.listComentario.stream()
-                .filter(x -> x.getPontoTuristico().getNome().equals(pontoTuristico.getNome()))
+                .filter(x -> x.getPontoTuristico().getNome().equalsIgnoreCase(pontoTuristico.getNome()))
                 .map(ComentarioDTO::new)
                 .collect(Collectors.toList());
     }
@@ -79,7 +79,7 @@ public class ComentarioServiceImpl implements ComentarioService {
                 .collect(Collectors.toList());
     }
 
-    private Long getNewId(){
+    public Long getNewId(){
         if (this.listComentario.size() > 0){
             return this.listComentario.stream().max(Comparator
                             .comparingDouble(Comentario::getId))

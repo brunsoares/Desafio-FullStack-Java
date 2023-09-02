@@ -68,7 +68,7 @@ public class PaisServiceImpl implements PaisService {
     public PaisDTO getPaisbyId(Long id) {
         Pais pais = this.getPaisById(id);
         if (pais == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "País não cadastrado!");
         }
         return new PaisDTO(pais);
     }
@@ -76,7 +76,7 @@ public class PaisServiceImpl implements PaisService {
     @Override
     public List<PaisDTO> getPaisByContinente(String continente) {
         return this.listPais.stream()
-                .filter(x -> x.getContinente().equals(continente))
+                .filter(x -> x.getContinente().equalsIgnoreCase(continente))
                 .map(pais -> new PaisDTO(pais))
                 .collect(Collectors.toList());
     }

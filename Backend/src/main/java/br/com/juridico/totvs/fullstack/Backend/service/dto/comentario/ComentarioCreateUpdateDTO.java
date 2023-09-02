@@ -2,12 +2,10 @@ package br.com.juridico.totvs.fullstack.Backend.service.dto.comentario;
 
 import br.com.juridico.totvs.fullstack.Backend.domain.PontoTuristico;
 
-import java.util.Date;
-
 public class ComentarioCreateUpdateDTO {
     private String nome;
     private String comentario;
-    private Date data;
+    private String data;
     private PontoTuristico pontoTuristico;
 
     public ComentarioCreateUpdateDTO(){
@@ -30,11 +28,11 @@ public class ComentarioCreateUpdateDTO {
         this.comentario = comentario;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 

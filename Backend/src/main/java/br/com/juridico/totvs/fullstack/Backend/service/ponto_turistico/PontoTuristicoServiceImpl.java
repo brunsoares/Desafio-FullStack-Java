@@ -63,14 +63,14 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
     @Override
     public PontoTuristicoDTO getPontoTuristicoById(Long id) {
         PontoTuristico pontoTuristico = this.getPontoTuristicoComId(id);
-        if (pontoTuristico == null){ throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
+        if (pontoTuristico == null){ throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ponto turístico não cadastrado!"); }
         return new PontoTuristicoDTO(pontoTuristico);
     }
 
     @Override
     public List<PontoTuristicoDTO> getPontoTuristicoByPais(PaisDTO pais) {
         return this.listPontoTuristico.stream()
-                .filter(x -> x.getPais().getNome().equals(pais.getNome()))
+                .filter(x -> x.getPais().getNome().equalsIgnoreCase(pais.getNome()))
                 .map(PontoTuristicoDTO::new)
                 .collect(Collectors.toList());
     }
@@ -78,7 +78,7 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
     @Override
     public List<PontoTuristicoDTO> getPontoTuristicoByCidade(String cidade) {
         return this.listPontoTuristico.stream()
-                .filter(x -> x.getCidade().equals(cidade))
+                .filter(x -> x.getCidade().equalsIgnoreCase(cidade))
                 .map(PontoTuristicoDTO::new)
                 .collect(Collectors.toList());
     }
