@@ -4,7 +4,7 @@ Esta é a documentação geral da nossa aplicação. Abaixo você encontrará li
 
 - [Documentação do Controlador de Países](paises.md)
 - [Documentação do Controlador de Comentários](comentarios.md)
-- [Documentação do Controlador de Pontos Turísticos](pontos_turisticos.md)
+- [Documentação do Controlador de Pontos Turísticos](ponto_turistico.md)
 
 Certifique-se de verificar a documentação específica de cada controlador para obter informações detalhadas sobre os endpoints, métodos HTTP e exemplos de uso.
 
