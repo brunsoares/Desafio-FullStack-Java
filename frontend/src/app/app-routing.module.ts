@@ -5,6 +5,7 @@ import { CadastroPaisesComponent } from './paises/cadastro-paises/cadastro-paise
 import { PaisesComponent } from './paises/paises.component';
 import { CadastroPontosTuristicosComponent } from './pontos-turisticos/cadastro-pontos-turisticos/cadastro-pontos-turisticos.component';
 import { PontosTuristicosComponent } from './pontos-turisticos/pontos-turisticos.component';
+import { ComentariosComponent } from './comentarios/comentarios.component';
 
 const routes: Routes = [
   {
@@ -52,30 +53,25 @@ const routes: Routes = [
           },
           {
             path: ':idPontoTuristico',
+            pathMatch: 'full',
             component: CadastroPontosTuristicosComponent,
             data: { tipoCadastroPontoTuristico: 'view' },
-            children: [
-              {
-                path: 'comentario',
-                children: [
-                  {
-                    path: '',
-                    pathMatch: 'full',
-                    component: CadastroComentarioComponent,
-                    data: { tipoCadastroComentario: 'new' }
-                  },
-                  {
-                    path: ':idComentario',
-                    component: CadastroComentarioComponent,
-                    data: { tipoCadastroComentario: 'view' }
-                  }
-                ]
-              }
-            ]
           }
         ]
       }
     ]
+  },
+  {
+    path: 'ponto-turistico/cadastro/:idPontoTuristico/comentario',
+    pathMatch: 'full',
+    component: ComentariosComponent,
+    data: { tipoCadastroComentario: 'new' }
+  },
+  {
+    path: 'ponto-turistico/cadastro/:idPontoTuristico/comentario/:idComentario',
+    pathMatch: 'full',
+    component: CadastroComentarioComponent,
+    data: { tipoCadastroComentario: 'new' }
   },
   {
     path: "**",

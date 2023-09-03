@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PoNotificationService, PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { map, tap } from 'rxjs';
 import { HttpService } from '../service/http-service.service';
+import { Pais } from './paises';
 
 @Component({
 	selector: 'app-paises',
@@ -97,10 +98,3 @@ export class PaisesComponent implements OnInit {
 	}
 }
 
-interface Pais{
-	id: string,
-	nome: string,
-	sigla: string,
-	continente: string,
-	codigoDdi: number
-}

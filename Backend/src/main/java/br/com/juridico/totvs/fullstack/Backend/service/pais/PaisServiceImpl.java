@@ -1,8 +1,8 @@
-package br.com.juridico.totvs.fullstack.Backend.service;
+package br.com.juridico.totvs.fullstack.Backend.service.pais;
 
 import br.com.juridico.totvs.fullstack.Backend.domain.Pais;
-import br.com.juridico.totvs.fullstack.Backend.service.dto.PaisCreateUpdateDTO;
-import br.com.juridico.totvs.fullstack.Backend.service.dto.PaisDTO;
+import br.com.juridico.totvs.fullstack.Backend.service.dto.pais.PaisCreateUpdateDTO;
+import br.com.juridico.totvs.fullstack.Backend.service.dto.pais.PaisDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -68,7 +68,7 @@ public class PaisServiceImpl implements PaisService {
     public PaisDTO getPaisbyId(Long id) {
         Pais pais = this.getPaisById(id);
         if (pais == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "País não cadastrado!");
         }
         return new PaisDTO(pais);
     }
@@ -76,7 +76,7 @@ public class PaisServiceImpl implements PaisService {
     @Override
     public List<PaisDTO> getPaisByContinente(String continente) {
         return this.listPais.stream()
-                .filter(x -> x.getContinente().equals(continente))
+                .filter(x -> x.getContinente().equalsIgnoreCase(continente))
                 .map(pais -> new PaisDTO(pais))
                 .collect(Collectors.toList());
     }

@@ -1,4 +1,58 @@
 <po-page-detail
-    p-title="Cadastro de comentários">
+    [p-title]="title">
+    <div>
+        <form [formGroup]="formPontoTuristico">
+            <po-input 
+                class="po-sm-4 po-md-4 po-lg-3 po-xl-3"
+                formControlName="nome"
+                p-label="Nome"
+                p-disabled="true">
+            </po-input>
+            <po-input 
+                class="po-sm-4 po-md-4 po-lg-3 po-xl-3"
+                formControlName="pais"
+                p-label="País"
+                p-disabled="true">
+            </po-input>
+            <po-input 
+                class="po-sm-4 po-md-4 po-lg-3 po-xl-3"
+                formControlName="cidade"            
+                p-label="Cidade"
+                p-disabled="true">
+            </po-input>
+            <po-input 
+                class="po-sm-4 po-md-4 po-lg-3 po-xl-3"
+                formControlName="melhorEstacao"
+                p-label="Melhor Estação"
+                p-disabled="true">
+            </po-input>
+        </form>
+    </div>
 
-</po-page-detail>>
+    <po-divider p-border-width="small"></po-divider>
+
+    <div>
+        <div class="po-row">
+            <div class="po-md-6">
+                <font class="po-font-subtitle">Comentários</font>
+                <br/>
+                <font class="po-font-text-large" *ngIf="!existeComentarios" >Não existem comentários cadastrados, seja o primeiro a comentar sobre!</font>
+            </div>
+            <div class="po-md-6 po-pull-right">
+                <po-button 
+                class="po-sm-6 po-md-6 po-lg-3 po-xl-3"
+                (p-click)="navegarParaCadastro('0')"
+                p-label="Cadastrar comentário">
+            </po-button></div>
+        </div> 
+
+        <po-table
+            class="po-sm-12 po-pt-2"
+            p-container="true"
+            [p-actions-right]="true"
+            [p-actions]="lsActions"
+            [p-columns]="lsColumns"
+            [p-items]="pontoTuristico.comentarios">
+        </po-table>
+    </div>
+</po-page-detail>

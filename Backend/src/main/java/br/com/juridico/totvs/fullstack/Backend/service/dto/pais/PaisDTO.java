@@ -1,4 +1,4 @@
-package br.com.juridico.totvs.fullstack.Backend.service.dto;
+package br.com.juridico.totvs.fullstack.Backend.service.dto.pais;
 
 import br.com.juridico.totvs.fullstack.Backend.domain.Pais;
 
@@ -9,7 +9,7 @@ public class PaisDTO {
     private String continente;
     private int ddi;
 
-    public PaisDTO(Long id, String nome, String sigla, String continente, int ddd){
+    public PaisDTO(Long id, String nome, String sigla, String continente, int ddi){
         this.id = id;
         this.nome = nome;
         this.sigla = sigla;
