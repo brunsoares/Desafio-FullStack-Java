@@ -10,6 +10,7 @@ export class CadastroComentarioComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Acessou aqui!")
   }
 
 }

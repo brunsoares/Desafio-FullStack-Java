@@ -10,6 +10,7 @@ export class ComentariosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("acessou aqui")
   }
 
 }

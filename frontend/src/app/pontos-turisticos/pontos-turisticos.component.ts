@@ -28,9 +28,8 @@ export class PontosTuristicosComponent implements OnInit {
 	  this.router.navigate(['cadastro', codigoPontoTuristico], { relativeTo: this.activatedRoute })
 	}
 	
-	// TODO: colocar tela de detalhes
 	navegarParaDetalhes(codigoPontoTuristico: string = ""){
-	  this.router.navigate(['cadastro', codigoPontoTuristico], { relativeTo: this.activatedRoute })
+	  this.router.navigate(['cadastro', codigoPontoTuristico, 'comentario'], { relativeTo: this.activatedRoute })
 	}
 
   	carregarActions(): Array<PoTableAction> {
