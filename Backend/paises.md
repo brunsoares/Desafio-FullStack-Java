@@ -60,3 +60,10 @@ Exemplo de corpo da solicitação JSON:
   "ddi": 54
 }
 ```
+
+### Status de Resposta
+- **201 Created:** Retornado após a criação bem-sucedida de um país.
+- **200 OK:** Retornado para solicitações de busca ou atualização bem-sucedidas.
+- **204 No Content:** Retornado após a exclusão bem-sucedida de um país.
+- **400 Bad Request:** Retornado se houver problemas nos dados enviados na solicitação.
+- **404 Not Found:** Retornado se um país não for encontrado com base no ID fornecido.
