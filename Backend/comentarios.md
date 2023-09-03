@@ -43,16 +43,18 @@ Exemplo de corpo da solicitação JSON:
 - **Exemplo de endpoint:** /comentario/1
 
 ### 5. Excluir um Comentário
+
 - **Método HTTP:** DELETE
 - **Endpoint:** /comentario/{idComentario}
 - **Descrição:** Exclui um comentário com base no ID fornecido.
 - **Exemplo de endpoint:** /comentario/1
 
 ### 6. Atualizar um Comentário
+
 - **Método HTTP:** PUT
 - **Endpoint:** /comentario/{idComentario}
 - **Descrição:** Atualiza os detalhes de um comentário com base no ID fornecido e nos dados fornecidos no corpo da solicitação JSON.
-- 
+  
 Exemplo de corpo da solicitação JSON:
 ```json
 {
